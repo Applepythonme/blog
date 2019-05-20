@@ -1,0 +1,100 @@
+配置用户名：
+git config --global user.name "sunshenxu"
+
+配置邮箱：
+git config --global user.email "1525218978@qq.com"
+
+创建空目录
+
+cd进入该目录
+
+使用git init 将目录变成git可以管理的仓库
+
+在仓库创建一个sunsx.txt文件   添加内容
+
+把文件添加到仓库   
+git add sunsx.txt
+
+把文件提交到仓库
+git commit -m "注释信息"
+
+git status  该命令可以让我们时刻掌握仓库当前状态
+
+git diff  该命令可以查看修改内容
+
+git log  该命令可以显示从最近到最远的提交日志
+
+git log --pretty=oneline  该命令可以在一行中显示从最近到最远的提交日志
+
+git reset --hard HEAD^  回退到上一个版本
+
+git reset --hard HEAD^^  回退到上上个版本
+
+git reset --hard HEAD~100 回退到上100个版本
+
+git reset --hard 具体版本号
+
+git reflog   该命令记录每一次命令
+
+工作区（仓库所在的目录）--git add-->status（缓存区）--git commit -m-->master(自动创建的一个分支)
+
+版本库：暂存区、master、指向master的指针（HEAD）
+
+git checkout -- fileName 就是让这个fileName文件回到最后一次 git add或者git commit时的状态、如果
+fileName文件自修改后还没有被放到暂存区，现在撤销修改就会回到和版本库一模一样的状态、如果fileName
+文件已经添加到暂存区，又做了修改，现在撤销修改就回到添加暂存区后的状态。
+
+
+远程仓库：
+创建SSH key  ：
+黑屏终端输入ssh-keygen  -t  rsa  -C  "GIThub的注册邮箱"
+记录ssh目录位置   cd
+cat id_rsa.pub   获取公钥
+在官网上添加公钥
+ssh -T git@github,com   测试秘钥是否通过
+创建远程仓库
+cd 本地仓库
+关联远程仓库： git remote  add origin 远程仓库地址
+删除关联： git remote rm origin
+推送本地仓库到远程库：git push origin master  --allow-unrelated-histories
+注意：需要先把远程库内容拉到本地，否则会出错
+拉取远程库到本地库：git pull origin master
+
+从零开发：先有远程库，从远程库克隆  git clone 远程库地址
+
+
+.gitignore(写在里面的文件不会上传到git中)
+touch创建文件    .  表示所有文件
+
+git add .
+git commit . -m  "信息"
+
+创建分支：git   branch 分支名
+切换分支： git  checkout  分支名
+查看当前分支： git branch   --->会列出所有分支，当前分支前面会有一个*号
+创建分支的同时切换分支   git checkout -b 分支名
+git checkout -b 分支名 origin/分支名   创建分支的同时切换分支,并在远程仓库创建分支
+
+
+创建远程分支并推送：git  push --set-upstream origin  分支名
+
+合并分支：先切换到被合并的分支上   git merge 分支名
+
+删除分支：git branch -d 分支名
+删除远程分支： git push origin :分支名      git push origin  --delete 分支名
+
+删除文件 ： rm -rf   文件名
+git log -graph 查看分支合并图
+
+
+标签管理：
+git tag 标签名  打标签
+git tag   查看所有标签
+git checkout 标签名   切换到指定标签
+git tag -d 标签名  删除标签
+git push origin 标签名  推送标签到远程
+git push origin --tags 一次推送全部尚未推送到远程的本地标签
+删除已经推送到远程的标签  先从本地删除git tag -d 标签名
+在从远程删除：git push origin :refs/tags/标签名
+
+
